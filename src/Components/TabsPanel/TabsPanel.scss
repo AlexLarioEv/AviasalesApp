@@ -1,0 +1,55 @@
+.tabs {
+    font-size: 0;
+    max-width: 500px;
+
+    @media (min-width: 750px) {
+        width: 500px;
+    }
+    
+    
+    &>input[type="radio"] {
+        display: none;
+    }
+    
+    &>div {
+        display: none;
+        font-size: 16px;
+    }
+    
+    #tab-btn-1:checked~#content-1,
+    #tab-btn-2:checked~#content-2,
+    #tab-btn-3:checked~#content-3 {
+        display: block;
+    }
+    
+    &>label {
+        display: inline-block;
+        text-align: center;
+        background: #FFFFFF;
+        border: 1px solid #DFE5EC;
+        width: 33.333%;
+        padding: 15px 0;
+        font-family: 'OpenSans-SemiBold';
+        font-size: 12px;
+        line-height: 20px;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        position: relative;
+        top: 1px;
+        margin-bottom: 20px;
+    }
+    
+    &>label:not(:first-of-type) {
+        border-left: none;
+    }
+    
+    &>input[type="radio"]:checked+label {
+        background-color: #2196F3;
+        color: #FFFFFF;
+    }
+    &__first-tab{
+        border-radius: 10px 0 0 10px;
+    }
+    &__last-tab{
+        border-radius: 0px 10px 10px 0px;
+    }
+}
