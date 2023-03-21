@@ -25,7 +25,7 @@
     },
     "plugins": ["react", "prettier", "import","@typescript-eslint"],
     "rules": {
-      "indent": ["error", 2, { "flatTernaryExpressions": true }],
+      "indent": ["error", 2, { "flatTernaryExpressions": true, "SwitchCase": 1 }],
       "no-underscore-dangle": ["off", { "allowAfterThis": true }],
       "prettier/prettier": "error",
       "linebreak-style": [0, "unix"],
@@ -41,6 +41,8 @@
       "react/prop-types": 0,
       "import/no-unresolved": [2, { "caseSensitive": false }],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      "default-param-last": "off",
+      "@typescript-eslint/default-param-last": "off",
       "import/named": 2,
       "import/namespace": 2,
       "import/default": 2,

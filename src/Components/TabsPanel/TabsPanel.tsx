@@ -27,8 +27,12 @@ const TabsPanel: React.FC = () => {
       <div id="content-1">
         <TicketList></TicketList>
       </div>
-      <div id="content-2">Самый быстрый</div>
-      <div id="content-3">Оптимальный</div>
+      <div id="content-2">
+        <TicketList></TicketList>
+      </div>
+      <div id="content-3">
+        <TicketList></TicketList>
+      </div>
       <Button></Button>
     </div>
   )
