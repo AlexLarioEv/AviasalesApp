@@ -1,7 +1,8 @@
-/* eslint-disable no-fallthrough */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Alert } from 'antd'
+import { v4 as uuidv4 } from 'uuid'
 
 import useTypedSelector from '../../Hooks/useTypedSelector'
 import TicketCard from '../Ticket/Ticket'
@@ -49,7 +50,7 @@ const TicketList: React.FC = () => {
   }, [tabs, ticket.data, filter])
   const tickets = ticket.filterData.map((el, index) => {
     if (index < 5 * counter) {
-      return <TicketCard price={el.price} key={index} carrier={el.carrier} segments={el.segments}></TicketCard>
+      return <TicketCard price={el.price} key={uuidv4()} carrier={el.carrier} segments={el.segments}></TicketCard>
     }
   })
   return (
