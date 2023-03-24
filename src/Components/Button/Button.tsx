@@ -2,9 +2,14 @@ import React from 'react'
 
 import './Button.scss'
 
-const Button: React.FC = () => {
+interface PropsButton {
+  onChangeCounter: () => void
+}
+const Button: React.FC<PropsButton> = (props) => {
+  const { onChangeCounter } = props
+
   return (
-    <button className="button">
+    <button className="button" onClick={onChangeCounter}>
       <span className="button__name">Показать еще 5 билетов!</span>
     </button>
   )
