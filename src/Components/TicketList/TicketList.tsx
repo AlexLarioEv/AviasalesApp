@@ -1,6 +1,7 @@
 /* eslint-disable no-fallthrough */
 import React, { Fragment, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import { Alert } from 'antd'
 
 import useTypedSelector from '../../Hooks/useTypedSelector'
 import TicketCard from '../Ticket/Ticket'
@@ -23,19 +24,17 @@ const TicketList: React.FC = () => {
   useEffect(() => {
     dispatch({ type: TicketActionTypes.CLEAR_FILTER_DATA })
     if (filter.checkboxNoneTransfer.check) {
-      console.log(0)
       dispatch({ type: TicketActionTypes.FILTER_DATA_NULL, payload: ticket })
     }
     if (filter.checkboxOneTransfer.check) {
-      console.log(1)
       dispatch({ type: TicketActionTypes.FILTER_DATA_ONE, payload: ticket })
     }
-    // if (filter.checkboxTwoTransfer.check) {
-    //   dispatch({ type: TicketActionTypes.FILTER_DATA, payload: ticket })
-    // }
-    // if (filter.checkboxThreeTransfer.check) {
-    //   dispatch({ type: TicketActionTypes.FILTER_DATA, payload: ticket })
-    // }
+    if (filter.checkboxTwoTransfer.check) {
+      dispatch({ type: TicketActionTypes.FILTER_DATA_TWO, payload: ticket })
+    }
+    if (filter.checkboxThreeTransfer.check) {
+      dispatch({ type: TicketActionTypes.FILTER_DATA_THREE, payload: ticket })
+    }
     switch (true) {
       case tabs.cheaperTab.check: {
         dispatch({ type: TicketActionTypes.SORT_TICKET_CHEAPER, payload: ticket })
@@ -47,7 +46,7 @@ const TicketList: React.FC = () => {
       }
       default:
     }
-  }, [tabs, ticket.data])
+  }, [tabs, ticket.data, filter])
   const tickets = ticket.filterData.map((el, index) => {
     if (index < 5 * counter) {
       return <TicketCard price={el.price} key={index} carrier={el.carrier} segments={el.segments}></TicketCard>
@@ -55,7 +54,11 @@ const TicketList: React.FC = () => {
   })
   return (
     <Fragment>
-      {tickets}
+      {tickets.length === 0 ? (
+        <Alert className="text" message="Info Text" showIcon description={'Рейсов, подходящих под заданные фильтры, не найдено'} type="info"></Alert>
+      ) : (
+        tickets
+      )}
       {ticket.error && <ErrorMessage></ErrorMessage>}
       {ticket.loading && <Spiner></Spiner>}
       <Button onChangeCounter={onChangeCounter}></Button>

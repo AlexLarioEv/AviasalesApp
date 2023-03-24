@@ -50,10 +50,10 @@ export enum TicketActionTypes {
   SKIP_ERROR = 'SKIP_ERROR',
   SORT_TICKET_CHEAPER = 'SORT_TICKET_CHEAPER',
   SORT_TICKET_FASTER = 'SORT_TICKET_FASTER',
-  FILTER_DATA_NULL = 'FILTER_DATA',
-  FILTER_DATA_ONE = 'FILTER_DATA',
-  // FILTER_DATA = 'FILTER_DATA',
-  // FILTER_DATA = 'FILTER_DATA',
+  FILTER_DATA_NULL = 'FILTER_DATA_NULL',
+  FILTER_DATA_ONE = 'FILTER_DATA_ONE',
+  FILTER_DATA_TWO = 'FILTER_DATA_TWO',
+  FILTER_DATA_THREE = 'FILTER_DATA_THREE',
   CLEAR_FILTER_DATA = 'CLEAR_FILTER_DATA',
 }
 
@@ -102,7 +102,17 @@ interface FilterDataNull {
 }
 
 interface FilterDataOne {
-  type: TicketActionTypes.FILTER_DATA_NULL
+  type: TicketActionTypes.FILTER_DATA_ONE
+  payload: TicketState
+}
+
+interface FilterDataTwo {
+  type: TicketActionTypes.FILTER_DATA_TWO
+  payload: TicketState
+}
+
+interface FilterDataThree {
+  type: TicketActionTypes.FILTER_DATA_THREE
   payload: TicketState
 }
 
@@ -121,4 +131,6 @@ export type TicketAction =
   | SortTicketFaster
   | FilterDataNull
   | FilterDataOne
+  | FilterDataTwo
+  | FilterDataThree
   | ClearFilterData

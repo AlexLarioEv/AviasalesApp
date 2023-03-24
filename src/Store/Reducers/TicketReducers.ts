@@ -35,6 +35,10 @@ const ticketReducer = (state = initState, action: TicketAction): TicketState => 
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 0)] }
     case TicketActionTypes.FILTER_DATA_ONE:
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 1)] }
+    case TicketActionTypes.FILTER_DATA_TWO:
+      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 2)] }
+    case TicketActionTypes.FILTER_DATA_THREE:
+      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 3)] }
     case TicketActionTypes.CLEAR_FILTER_DATA:
       return {
         ...state,

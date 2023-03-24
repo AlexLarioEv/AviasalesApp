@@ -1,14 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { Alert } from 'antd'
 
 import TicketList from '../TicketList/TicketList'
-import useTypedSelector from '../../Hooks/useTypedSelector'
 import { TabsActionTypes } from '../../Types/Tabs'
 
 import './TabsPanel.scss'
 
 const TabsPanel: React.FC = () => {
-  const { tabs } = useTypedSelector((state) => state)
   const dispatch = useDispatch()
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     switch (e.target.id) {
@@ -41,7 +40,13 @@ const TabsPanel: React.FC = () => {
         <TicketList></TicketList>
       </div>
       <div id="content-3">
-        <TicketList></TicketList>
+        <Alert
+          className="text"
+          message="Info Text"
+          showIcon
+          description={'В данный момент времени не поддерживается платформой!'}
+          type="info"
+        ></Alert>
       </div>
     </div>
   )
