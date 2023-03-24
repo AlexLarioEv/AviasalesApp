@@ -35,6 +35,7 @@ export interface Ticket {
 
 export interface TicketState {
   data: Array<Ticket> | []
+  filterData: Array<Ticket> | []
   identificator: string
   loading: boolean
   error: string | null
@@ -47,6 +48,13 @@ export enum TicketActionTypes {
   FETCH_TICKET_ERROR = 'FETCH_TICKET_ERROR',
   FETCH_TICKET_END = 'FETCH_TICKET_END',
   SKIP_ERROR = 'SKIP_ERROR',
+  SORT_TICKET_CHEAPER = 'SORT_TICKET_CHEAPER',
+  SORT_TICKET_FASTER = 'SORT_TICKET_FASTER',
+  FILTER_DATA_NULL = 'FILTER_DATA',
+  FILTER_DATA_ONE = 'FILTER_DATA',
+  // FILTER_DATA = 'FILTER_DATA',
+  // FILTER_DATA = 'FILTER_DATA',
+  CLEAR_FILTER_DATA = 'CLEAR_FILTER_DATA',
 }
 
 interface FetchSearchId {
@@ -78,4 +86,39 @@ interface FetchTicketEnd {
   payload: false
 }
 
-export type TicketAction = FetchTicketAction | FetchTicketActionSuccess | FetchTicketActionError | FetchSearchId | SkipError | FetchTicketEnd
+interface SortTicketCheaper {
+  type: TicketActionTypes.SORT_TICKET_CHEAPER
+  payload: TicketState
+}
+
+interface SortTicketFaster {
+  type: TicketActionTypes.SORT_TICKET_FASTER
+  payload: TicketState
+}
+
+interface FilterDataNull {
+  type: TicketActionTypes.FILTER_DATA_NULL
+  payload: TicketState
+}
+
+interface FilterDataOne {
+  type: TicketActionTypes.FILTER_DATA_NULL
+  payload: TicketState
+}
+
+interface ClearFilterData {
+  type: TicketActionTypes.CLEAR_FILTER_DATA
+}
+
+export type TicketAction =
+  | FetchTicketAction
+  | FetchTicketActionSuccess
+  | FetchTicketActionError
+  | FetchSearchId
+  | SkipError
+  | FetchTicketEnd
+  | SortTicketCheaper
+  | SortTicketFaster
+  | FilterDataNull
+  | FilterDataOne
+  | ClearFilterData
