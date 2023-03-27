@@ -2,11 +2,11 @@ import React from 'react'
 import { Alert, Button, Space } from 'antd'
 import { useDispatch } from 'react-redux'
 
-import useTypedSelector from '../../Hooks/useTypedSelector'
-import { TicketActionTypes } from '../../Types/Ticket'
-import useActions from '../../Hooks/useActions'
+import useTypedSelector from '../../hooks/useTypedSelector'
+import { ETicketActionTypes } from '../../types/ticket'
+import useActions from '../../hooks/useActions'
 
-import './ErrorMessage.scss'
+import './errorMessage.scss'
 
 const ErrorMessage: React.FC = () => {
   const { ticket } = useTypedSelector((state) => state)
@@ -18,7 +18,7 @@ const ErrorMessage: React.FC = () => {
   }
 
   const clickEndSession = () => {
-    dispatch({ type: TicketActionTypes.SKIP_ERROR, payload: null })
+    dispatch({ type: ETicketActionTypes.SKIP_ERROR, payload: null })
   }
 
   return (

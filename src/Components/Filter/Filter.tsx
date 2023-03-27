@@ -1,10 +1,10 @@
 import React from 'react'
 import 'antd/dist/reset.css'
-import './Filter.scss'
+import './filter.scss'
 import { useDispatch } from 'react-redux'
 
-import { FilterActionTypes } from '../../Types/Filter'
-import useTypedSelector from '../../Hooks/useTypedSelector'
+import { EFilterActionTypes } from '../../types/filter'
+import useTypedSelector from '../../hooks/useTypedSelector'
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch()
@@ -13,15 +13,15 @@ const Filter: React.FC = () => {
   const changeToggleCheckbox: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     switch (e.target.id) {
       case 'cb1':
-        return dispatch({ type: FilterActionTypes.TOGGLE_ALL, payload: e.target.checked })
+        return dispatch({ type: EFilterActionTypes.TOGGLE_ALL, payload: e.target.checked })
       case 'cb2':
-        return dispatch({ type: FilterActionTypes.TOGGLE_NONE_TRANSFER, payload: e.target.checked })
+        return dispatch({ type: EFilterActionTypes.TOGGLE_NONE_TRANSFER, payload: e.target.checked })
       case 'cb3':
-        return dispatch({ type: FilterActionTypes.TOGGLE_ONE_TRANSFER, payload: e.target.checked })
+        return dispatch({ type: EFilterActionTypes.TOGGLE_ONE_TRANSFER, payload: e.target.checked })
       case 'cb4':
-        return dispatch({ type: FilterActionTypes.TOGGLE_TWO_TRANSFER, payload: e.target.checked })
+        return dispatch({ type: EFilterActionTypes.TOGGLE_TWO_TRANSFER, payload: e.target.checked })
       case 'cb5':
-        return dispatch({ type: FilterActionTypes.TOGGLE_THREE_TRANSFER, payload: e.target.checked })
+        return dispatch({ type: EFilterActionTypes.TOGGLE_THREE_TRANSFER, payload: e.target.checked })
       default:
     }
   }

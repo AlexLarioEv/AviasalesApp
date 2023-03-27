@@ -1,6 +1,6 @@
-import { TicketState, TicketAction, TicketActionTypes } from '../../Types/Ticket'
+import { ITicketState, TTicketAction, ETicketActionTypes } from '../../types/ticket'
 
-const initState: TicketState = {
+const initState: ITicketState = {
   data: [],
   filterData: [],
   identificator: '',
@@ -8,38 +8,38 @@ const initState: TicketState = {
   error: null,
 }
 
-const ticketReducer = (state = initState, action: TicketAction): TicketState => {
+const ticketReducer = (state = initState, action: TTicketAction): ITicketState => {
   switch (action.type) {
-    case TicketActionTypes.FETCH_TICKET:
+    case ETicketActionTypes.FETCH_TICKET:
       return { ...state, loading: true, error: null }
-    case TicketActionTypes.FETCH_TICKET_SUCCESS:
+    case ETicketActionTypes.FETCH_TICKET_SUCCESS:
       return { ...state, loading: true, error: null, data: [...state.data, ...action.payload] }
-    case TicketActionTypes.FETCH_TICKET_ERROR:
+    case ETicketActionTypes.FETCH_TICKET_ERROR:
       return { ...state, loading: false, error: action.payload }
-    case TicketActionTypes.FETCH_SEARCH_ID:
+    case ETicketActionTypes.FETCH_SEARCH_ID:
       return { ...state, loading: false, error: null, identificator: action.payload }
-    case TicketActionTypes.SKIP_ERROR:
+    case ETicketActionTypes.SKIP_ERROR:
       return { ...state, loading: false, error: action.payload }
-    case TicketActionTypes.FETCH_TICKET_END:
+    case ETicketActionTypes.FETCH_TICKET_END:
       return { ...state, loading: action.payload }
-    case TicketActionTypes.SORT_TICKET_CHEAPER:
+    case ETicketActionTypes.SORT_TICKET_CHEAPER:
       return { ...state, filterData: state.filterData.sort((a, b) => a.price - b.price) }
-    case TicketActionTypes.SORT_TICKET_FASTER:
+    case ETicketActionTypes.SORT_TICKET_FASTER:
       return {
         ...state,
-        filterData: action.payload.filterData.sort(
+        filterData: state.filterData.sort(
           (a, b) => a.segments[0].duration + a.segments[1].duration - b.segments[0].duration - b.segments[1].duration
         ),
       }
-    case TicketActionTypes.FILTER_DATA_NULL:
+    case ETicketActionTypes.FILTER_DATA_NULL:
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 0)] }
-    case TicketActionTypes.FILTER_DATA_ONE:
+    case ETicketActionTypes.FILTER_DATA_ONE:
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 1)] }
-    case TicketActionTypes.FILTER_DATA_TWO:
+    case ETicketActionTypes.FILTER_DATA_TWO:
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 2)] }
-    case TicketActionTypes.FILTER_DATA_THREE:
+    case ETicketActionTypes.FILTER_DATA_THREE:
       return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 3)] }
-    case TicketActionTypes.CLEAR_FILTER_DATA:
+    case ETicketActionTypes.CLEAR_FILTER_DATA:
       return {
         ...state,
         filterData: [],

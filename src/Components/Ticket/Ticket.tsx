@@ -1,10 +1,10 @@
 import React from 'react'
 import { add, format } from 'date-fns'
 
-import './Ticket.scss'
-import { Ticket } from '../../Types/Ticket'
+import './ticket.scss'
+import { ITicket } from '../../types/ticket'
 
-const TicketCard: React.FC<Ticket> = (props) => {
+const TicketCard: React.FC<ITicket> = (props) => {
   const { price, carrier, segments } = props
 
   const getTimeFromMins = (duration: number) => {

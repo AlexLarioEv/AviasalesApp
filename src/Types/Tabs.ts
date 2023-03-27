@@ -1,25 +1,25 @@
-export interface TabsState {
+export interface ITabsState {
   cheaperTab: { check: boolean }
   fasterTab: { check: boolean }
   optimalTab: { check: boolean }
 }
 
-export enum TabsActionTypes {
+export enum ETabsActionTypes {
   TOGGLE_CHEAPER_TAB = 'TOGGLE_CHEAPER_TAB',
   TOGGLE_FASTER_TAB = 'TOGGLE_FASTER_TAB',
   TOGGLE_OPTIMAL_TAB = 'TOGGLE_OPTIMAL_TAB',
 }
 
-interface ToggleCheaperTab {
-  type: TabsActionTypes.TOGGLE_CHEAPER_TAB
+interface IToggleCheaperTab {
+  type: ETabsActionTypes.TOGGLE_CHEAPER_TAB
 }
 
-interface ToggleFasterTab {
-  type: TabsActionTypes.TOGGLE_FASTER_TAB
+interface IToggleFasterTab {
+  type: ETabsActionTypes.TOGGLE_FASTER_TAB
 }
 
-interface ToggleOptimalTab {
-  type: TabsActionTypes.TOGGLE_OPTIMAL_TAB
+interface IToggleOptimalTab {
+  type: ETabsActionTypes.TOGGLE_OPTIMAL_TAB
 }
 
-export type TabsAction = ToggleCheaperTab | ToggleFasterTab | ToggleOptimalTab
+export type TTabsAction = IToggleCheaperTab | IToggleFasterTab | IToggleOptimalTab

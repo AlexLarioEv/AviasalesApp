@@ -3,7 +3,7 @@ import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
-import rootRuduser from './Reducers'
+import rootRuduser from './reducers'
 
 export const store = createStore(rootRuduser, composeWithDevTools(applyMiddleware(thunk)))
 

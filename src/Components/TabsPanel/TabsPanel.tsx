@@ -2,21 +2,21 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Alert } from 'antd'
 
-import TicketList from '../TicketList/TicketList'
-import { TabsActionTypes } from '../../Types/Tabs'
+import TicketList from '../ticketList/ticketList'
+import { ETabsActionTypes } from '../../types/tabs'
 
-import './TabsPanel.scss'
+import './tabsPanel.scss'
 
 const TabsPanel: React.FC = () => {
   const dispatch = useDispatch()
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     switch (e.target.id) {
       case 'tab-btn-1':
-        return dispatch({ type: TabsActionTypes.TOGGLE_CHEAPER_TAB })
+        return dispatch({ type: ETabsActionTypes.TOGGLE_CHEAPER_TAB })
       case 'tab-btn-2':
-        return dispatch({ type: TabsActionTypes.TOGGLE_FASTER_TAB })
+        return dispatch({ type: ETabsActionTypes.TOGGLE_FASTER_TAB })
       case 'tab-btn-3':
-        return dispatch({ type: TabsActionTypes.TOGGLE_OPTIMAL_TAB })
+        return dispatch({ type: ETabsActionTypes.TOGGLE_OPTIMAL_TAB })
       default:
     }
   }

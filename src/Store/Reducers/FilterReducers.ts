@@ -1,6 +1,6 @@
-import { FilterState, FilterAction, FilterActionTypes } from '../../Types/Filter'
+import { IFilterState, TFilterAction, EFilterActionTypes } from '../../types/filter'
 
-const initState: FilterState = {
+const initState: IFilterState = {
   checkboxAll: { check: false },
   checkboxNoneTransfer: { check: false },
   checkboxOneTransfer: { check: false },
@@ -8,9 +8,9 @@ const initState: FilterState = {
   checkboxThreeTransfer: { check: false },
 }
 
-const filterReducer = (state = initState, action: FilterAction): FilterState => {
+const filterReducer = (state = initState, action: TFilterAction): IFilterState => {
   switch (action.type) {
-    case FilterActionTypes.TOGGLE_ALL:
+    case EFilterActionTypes.TOGGLE_ALL:
       return {
         checkboxAll: { check: action.payload },
         checkboxNoneTransfer: { check: action.payload },
@@ -18,25 +18,25 @@ const filterReducer = (state = initState, action: FilterAction): FilterState => 
         checkboxTwoTransfer: { check: action.payload },
         checkboxThreeTransfer: { check: action.payload },
       }
-    case FilterActionTypes.TOGGLE_NONE_TRANSFER:
+    case EFilterActionTypes.TOGGLE_NONE_TRANSFER:
       if (state.checkboxOneTransfer.check && state.checkboxTwoTransfer.check && state.checkboxThreeTransfer.check) {
         return { ...state, checkboxNoneTransfer: { check: action.payload }, checkboxAll: { check: action.payload } }
       }
       return { ...state, checkboxNoneTransfer: { check: action.payload } }
 
-    case FilterActionTypes.TOGGLE_ONE_TRANSFER:
+    case EFilterActionTypes.TOGGLE_ONE_TRANSFER:
       if (state.checkboxNoneTransfer.check && state.checkboxTwoTransfer.check && state.checkboxThreeTransfer.check) {
         return { ...state, checkboxOneTransfer: { check: action.payload }, checkboxAll: { check: action.payload } }
       }
       return { ...state, checkboxOneTransfer: { check: action.payload } }
 
-    case FilterActionTypes.TOGGLE_TWO_TRANSFER:
+    case EFilterActionTypes.TOGGLE_TWO_TRANSFER:
       if (state.checkboxNoneTransfer.check && state.checkboxOneTransfer.check && state.checkboxThreeTransfer.check) {
         return { ...state, checkboxTwoTransfer: { check: action.payload }, checkboxAll: { check: action.payload } }
       }
       return { ...state, checkboxTwoTransfer: { check: action.payload } }
 
-    case FilterActionTypes.TOGGLE_THREE_TRANSFER:
+    case EFilterActionTypes.TOGGLE_THREE_TRANSFER:
       if (state.checkboxNoneTransfer.check && state.checkboxOneTransfer.check && state.checkboxTwoTransfer.check) {
         return { ...state, checkboxThreeTransfer: { check: action.payload }, checkboxAll: { check: action.payload } }
       }

@@ -1,4 +1,4 @@
-export interface Ticket {
+export interface ITicket {
   // Цена в рублях
   price: number
   // Код авиакомпании (iata)
@@ -33,15 +33,15 @@ export interface Ticket {
   ]
 }
 
-export interface TicketState {
-  data: Array<Ticket> | []
-  filterData: Array<Ticket> | []
+export interface ITicketState {
+  data: Array<ITicket> | []
+  filterData: Array<ITicket> | []
   identificator: string
   loading: boolean
   error: string | null
 }
 
-export enum TicketActionTypes {
+export enum ETicketActionTypes {
   FETCH_SEARCH_ID = 'FETCH_SEARCH_ID',
   FETCH_TICKET = 'FETCH_TICKET',
   FETCH_TICKET_SUCCESS = 'FETCH_TICKET_SUCCESS',
@@ -57,80 +57,80 @@ export enum TicketActionTypes {
   CLEAR_FILTER_DATA = 'CLEAR_FILTER_DATA',
 }
 
-interface FetchSearchId {
-  type: TicketActionTypes.FETCH_SEARCH_ID
+interface IFetchSearchId {
+  type: ETicketActionTypes.FETCH_SEARCH_ID
   payload: string
 }
 
-interface FetchTicketAction {
-  type: TicketActionTypes.FETCH_TICKET
+interface IFetchTicketAction {
+  type: ETicketActionTypes.FETCH_TICKET
 }
 
-interface FetchTicketActionSuccess {
-  type: TicketActionTypes.FETCH_TICKET_SUCCESS
-  payload: Array<Ticket> | []
+interface IFetchTicketActionSuccess {
+  type: ETicketActionTypes.FETCH_TICKET_SUCCESS
+  payload: Array<ITicket> | []
 }
 
-interface FetchTicketActionError {
-  type: TicketActionTypes.FETCH_TICKET_ERROR
+interface IFetchTicketActionError {
+  type: ETicketActionTypes.FETCH_TICKET_ERROR
   payload: string
 }
 
-interface SkipError {
-  type: TicketActionTypes.SKIP_ERROR
+interface ISkipError {
+  type: ETicketActionTypes.SKIP_ERROR
   payload: null
 }
 
-interface FetchTicketEnd {
-  type: TicketActionTypes.FETCH_TICKET_END
+interface IFetchTicketEnd {
+  type: ETicketActionTypes.FETCH_TICKET_END
   payload: false
 }
 
-interface SortTicketCheaper {
-  type: TicketActionTypes.SORT_TICKET_CHEAPER
-  payload: TicketState
+interface ISortTicketCheaper {
+  type: ETicketActionTypes.SORT_TICKET_CHEAPER
+  payload: ITicketState
 }
 
-interface SortTicketFaster {
-  type: TicketActionTypes.SORT_TICKET_FASTER
-  payload: TicketState
+interface ISortTicketFaster {
+  type: ETicketActionTypes.SORT_TICKET_FASTER
+  payload: ITicketState
 }
 
-interface FilterDataNull {
-  type: TicketActionTypes.FILTER_DATA_NULL
-  payload: TicketState
+interface IFilterDataNull {
+  type: ETicketActionTypes.FILTER_DATA_NULL
+  payload: ITicketState
 }
 
-interface FilterDataOne {
-  type: TicketActionTypes.FILTER_DATA_ONE
-  payload: TicketState
+interface IFilterDataOne {
+  type: ETicketActionTypes.FILTER_DATA_ONE
+  payload: ITicketState
 }
 
-interface FilterDataTwo {
-  type: TicketActionTypes.FILTER_DATA_TWO
-  payload: TicketState
+interface IFilterDataTwo {
+  type: ETicketActionTypes.FILTER_DATA_TWO
+  payload: ITicketState
 }
 
-interface FilterDataThree {
-  type: TicketActionTypes.FILTER_DATA_THREE
-  payload: TicketState
+interface IFilterDataThree {
+  type: ETicketActionTypes.FILTER_DATA_THREE
+  payload: ITicketState
 }
 
-interface ClearFilterData {
-  type: TicketActionTypes.CLEAR_FILTER_DATA
+interface IClearFilterData {
+  type: ETicketActionTypes.CLEAR_FILTER_DATA
 }
 
-export type TicketAction =
-  | FetchTicketAction
-  | FetchTicketActionSuccess
-  | FetchTicketActionError
-  | FetchSearchId
-  | SkipError
-  | FetchTicketEnd
-  | SortTicketCheaper
-  | SortTicketFaster
-  | FilterDataNull
-  | FilterDataOne
-  | FilterDataTwo
-  | FilterDataThree
-  | ClearFilterData
+export type TTicketAction =
+  | IFetchTicketAction
+  | IFetchTicketActionSuccess
+  | IFetchTicketActionError
+  | IFetchSearchId
+  | ISkipError
+  | IFetchTicketEnd
+  | ISortTicketCheaper
+  | ISortTicketFaster
+  | IFilterDataNull
+  | IFilterDataOne
+  | IFilterDataTwo
+  | IFilterDataThree
+  | IClearFilterData

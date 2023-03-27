@@ -1,4 +1,4 @@
-export interface FilterState {
+export interface IFilterState {
   checkboxAll: { check: boolean }
   checkboxNoneTransfer: { check: boolean }
   checkboxOneTransfer: { check: boolean }
@@ -6,7 +6,7 @@ export interface FilterState {
   checkboxThreeTransfer: { check: boolean }
 }
 
-export enum FilterActionTypes {
+export enum EFilterActionTypes {
   TOGGLE_ALL = 'TOGGLE_ALL',
   TOGGLE_NONE_TRANSFER = 'TOGGLE_NONE_TRANSFER',
   TOGGLE_ONE_TRANSFER = 'TOGGLE_ONE_TRANSFER',
@@ -14,34 +14,34 @@ export enum FilterActionTypes {
   TOGGLE_THREE_TRANSFER = 'TOGGLE_THREE_TRANSFER',
 }
 
-interface CheckboxAllAction {
-  type: FilterActionTypes.TOGGLE_ALL
+interface ICheckboxAllAction {
+  type: EFilterActionTypes.TOGGLE_ALL
   payload: boolean
 }
 
-interface CheckboxNoneTransferAction {
-  type: FilterActionTypes.TOGGLE_NONE_TRANSFER
+interface ICheckboxNoneTransferAction {
+  type: EFilterActionTypes.TOGGLE_NONE_TRANSFER
   payload: boolean
 }
 
-interface CheckboxOneTransferAction {
-  type: FilterActionTypes.TOGGLE_ONE_TRANSFER
+interface ICheckboxOneTransferAction {
+  type: EFilterActionTypes.TOGGLE_ONE_TRANSFER
   payload: boolean
 }
 
-interface CheckboxTwoTransferAction {
-  type: FilterActionTypes.TOGGLE_TWO_TRANSFER
+interface ICheckboxTwoTransferAction {
+  type: EFilterActionTypes.TOGGLE_TWO_TRANSFER
   payload: boolean
 }
 
-interface CheckboxThreeTransferAction {
-  type: FilterActionTypes.TOGGLE_THREE_TRANSFER
+interface ICheckboxThreeTransferAction {
+  type: EFilterActionTypes.TOGGLE_THREE_TRANSFER
   payload: boolean
 }
 
-export type FilterAction =
-  | CheckboxAllAction
-  | CheckboxNoneTransferAction
-  | CheckboxOneTransferAction
-  | CheckboxTwoTransferAction
-  | CheckboxThreeTransferAction
+export type TFilterAction =
+  | ICheckboxAllAction
+  | ICheckboxNoneTransferAction
+  | ICheckboxOneTransferAction
+  | ICheckboxTwoTransferAction
+  | ICheckboxThreeTransferAction

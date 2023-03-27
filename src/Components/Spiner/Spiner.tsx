@@ -3,7 +3,7 @@ import React from 'react'
 import { LoadingOutlined } from '@ant-design/icons'
 import { Spin } from 'antd'
 
-import './Spiner.css'
+import './spiner.css'
 
 const antIcon = <LoadingOutlined style={{ fontSize: 70 }} spin />
 

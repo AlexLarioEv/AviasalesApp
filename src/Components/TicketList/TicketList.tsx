@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux'
 import { Alert } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
 
-import useTypedSelector from '../../Hooks/useTypedSelector'
-import TicketCard from '../Ticket/Ticket'
-import ErrorMessage from '../ErrorMessage/ErrorMessage'
-import Spiner from '../Spiner/Spiner'
-import Button from '../Button/Button'
-import { TicketActionTypes } from '../../Types/Ticket'
+import useTypedSelector from '../../hooks/useTypedSelector'
+import TicketCard from '../ticket/ticket'
+import ErrorMessage from '../errorMessage/errorMessage'
+import Spiner from '../spiner/spiner'
+import Button from '../button/button'
+import { ETicketActionTypes } from '../../types/ticket'
 
 const TicketList: React.FC = () => {
   const { ticket } = useTypedSelector((state) => state)
@@ -23,26 +23,26 @@ const TicketList: React.FC = () => {
     setCounter((state) => state + 1)
   }
   useEffect(() => {
-    dispatch({ type: TicketActionTypes.CLEAR_FILTER_DATA })
+    dispatch({ type: ETicketActionTypes.CLEAR_FILTER_DATA })
     if (filter.checkboxNoneTransfer.check) {
-      dispatch({ type: TicketActionTypes.FILTER_DATA_NULL, payload: ticket })
+      dispatch({ type: ETicketActionTypes.FILTER_DATA_NULL, payload: ticket })
     }
     if (filter.checkboxOneTransfer.check) {
-      dispatch({ type: TicketActionTypes.FILTER_DATA_ONE, payload: ticket })
+      dispatch({ type: ETicketActionTypes.FILTER_DATA_ONE, payload: ticket })
     }
     if (filter.checkboxTwoTransfer.check) {
-      dispatch({ type: TicketActionTypes.FILTER_DATA_TWO, payload: ticket })
+      dispatch({ type: ETicketActionTypes.FILTER_DATA_TWO, payload: ticket })
     }
     if (filter.checkboxThreeTransfer.check) {
-      dispatch({ type: TicketActionTypes.FILTER_DATA_THREE, payload: ticket })
+      dispatch({ type: ETicketActionTypes.FILTER_DATA_THREE, payload: ticket })
     }
     switch (true) {
       case tabs.cheaperTab.check: {
-        dispatch({ type: TicketActionTypes.SORT_TICKET_CHEAPER, payload: ticket })
+        dispatch({ type: ETicketActionTypes.SORT_TICKET_CHEAPER, payload: ticket })
         break
       }
       case tabs.fasterTab.check: {
-        dispatch({ type: TicketActionTypes.SORT_TICKET_FASTER, payload: ticket })
+        dispatch({ type: ETicketActionTypes.SORT_TICKET_FASTER, payload: ticket })
         break
       }
       default:
