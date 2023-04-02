@@ -1,1 +1,1 @@
-https://aviasales-app-alexlarioev.vercel.app 
+https://aviasales-app-alexlarioev.vercel.app
