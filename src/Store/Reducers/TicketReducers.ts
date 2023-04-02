@@ -31,19 +31,8 @@ const ticketReducer = (state = initState, action: TTicketAction): ITicketState =
           (a, b) => a.segments[0].duration + a.segments[1].duration - b.segments[0].duration - b.segments[1].duration
         ),
       }
-    case ETicketActionTypes.FILTER_DATA_NULL:
-      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 0)] }
-    case ETicketActionTypes.FILTER_DATA_ONE:
-      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 1)] }
-    case ETicketActionTypes.FILTER_DATA_TWO:
-      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 2)] }
-    case ETicketActionTypes.FILTER_DATA_THREE:
-      return { ...state, filterData: [...state.filterData, ...action.payload.data.filter((el) => el.segments[0].stops.length === 3)] }
-    case ETicketActionTypes.CLEAR_FILTER_DATA:
-      return {
-        ...state,
-        filterData: [],
-      }
+    case ETicketActionTypes.FILTER_DATA:
+      return { ...state, filterData: action.payload }
     default:
       return state
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from 'react'
 import 'antd/dist/reset.css'
 import './filter.scss'
@@ -11,55 +12,46 @@ const Filter: React.FC = () => {
   const { filter } = useTypedSelector((state) => state)
 
   const changeToggleCheckbox: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    switch (e.target.id) {
-      case 'cb1':
-        return dispatch({ type: EFilterActionTypes.TOGGLE_ALL, payload: e.target.checked })
-      case 'cb2':
-        return dispatch({ type: EFilterActionTypes.TOGGLE_NONE_TRANSFER, payload: e.target.checked })
-      case 'cb3':
-        return dispatch({ type: EFilterActionTypes.TOGGLE_ONE_TRANSFER, payload: e.target.checked })
-      case 'cb4':
-        return dispatch({ type: EFilterActionTypes.TOGGLE_TWO_TRANSFER, payload: e.target.checked })
-      case 'cb5':
-        return dispatch({ type: EFilterActionTypes.TOGGLE_THREE_TRANSFER, payload: e.target.checked })
-      default:
+    let data = []
+    if (e.target.id === '0') {
+      if (filter.checkboxs[0]) {
+        data = filter.checkboxs.map(() => false)
+      } else {
+        data = filter.checkboxs.map(() => true)
+      }
+    } else {
+      data = filter.checkboxs.map((el, id) => (id === Number(e.target.id) ? !el : el))
+      data.shift()
+      data.length === data.reduce((sum, current) => sum + Number(current), 0) ? data.unshift(true) : data.unshift(false)
     }
+    dispatch({
+      type: EFilterActionTypes.TOGGLE_FILTER,
+      payload: data,
+    })
   }
   return (
     <aside className="filter">
       <h2 className="filter__title">КОЛИЧЕСТВО ПЕРЕСАДОК</h2>
       <nav className="filter__nav">
         <ul className="filter__list">
-          <label className="filter__label" htmlFor="cb1">
-            <input className="filter__checkbox" type="checkbox" id="cb1" onChange={changeToggleCheckbox} checked={filter.checkboxAll.check} />
+          <label className="filter__label" htmlFor="0">
+            <input className="filter__checkbox" type="checkbox" id="0" onChange={changeToggleCheckbox} checked={filter.checkboxs[0]} />
             <span className="filter__item">Все</span>
           </label>
-          <label className="filter__label" htmlFor="cb2">
-            <input
-              className="filter__checkbox"
-              type="checkbox"
-              id="cb2"
-              onChange={changeToggleCheckbox}
-              checked={filter.checkboxNoneTransfer.check}
-            />
+          <label className="filter__label" htmlFor="1">
+            <input className="filter__checkbox" type="checkbox" id="1" onChange={changeToggleCheckbox} checked={filter.checkboxs[1]} />
             <span className="filter__item">Без пересадок</span>
           </label>
-          <label className="filter__label">
-            <input className="filter__checkbox" type="checkbox" id="cb3" onChange={changeToggleCheckbox} checked={filter.checkboxOneTransfer.check} />
+          <label className="filter__label" htmlFor="2">
+            <input className="filter__checkbox" type="checkbox" id="2" onChange={changeToggleCheckbox} checked={filter.checkboxs[2]} />
             <span className="filter__item">1 пересадка</span>
           </label>
-          <label className="filter__label" htmlFor="cb4">
-            <input className="filter__checkbox" type="checkbox" id="cb4" onChange={changeToggleCheckbox} checked={filter.checkboxTwoTransfer.check} />
+          <label className="filter__label" htmlFor="3">
+            <input className="filter__checkbox" type="checkbox" id="3" onChange={changeToggleCheckbox} checked={filter.checkboxs[3]} />
             <span className="filter__item">2 пересадки</span>
           </label>
-          <label className="filter__label" htmlFor="cb5">
-            <input
-              className="filter__checkbox"
-              type="checkbox"
-              id="cb5"
-              onChange={changeToggleCheckbox}
-              checked={filter.checkboxThreeTransfer.check}
-            />
+          <label className="filter__label" htmlFor="4">
+            <input className="filter__checkbox" type="checkbox" id="4" onChange={changeToggleCheckbox} checked={filter.checkboxs[4]} />
             <span className="filter__item">3 пересадки</span>
           </label>
         </ul>

@@ -9,7 +9,7 @@ import TicketCard from '../ticket/ticket'
 import ErrorMessage from '../errorMessage/errorMessage'
 import Spiner from '../spiner/spiner'
 import Button from '../button/button'
-import { ETicketActionTypes } from '../../types/ticket'
+import { ETicketActionTypes, ITicket } from '../../types/ticket'
 
 const TicketList: React.FC = () => {
   const { ticket } = useTypedSelector((state) => state)
@@ -23,19 +23,13 @@ const TicketList: React.FC = () => {
     setCounter((state) => state + 1)
   }
   useEffect(() => {
-    dispatch({ type: ETicketActionTypes.CLEAR_FILTER_DATA })
-    if (filter.checkboxNoneTransfer.check) {
-      dispatch({ type: ETicketActionTypes.FILTER_DATA_NULL, payload: ticket })
-    }
-    if (filter.checkboxOneTransfer.check) {
-      dispatch({ type: ETicketActionTypes.FILTER_DATA_ONE, payload: ticket })
-    }
-    if (filter.checkboxTwoTransfer.check) {
-      dispatch({ type: ETicketActionTypes.FILTER_DATA_TWO, payload: ticket })
-    }
-    if (filter.checkboxThreeTransfer.check) {
-      dispatch({ type: ETicketActionTypes.FILTER_DATA_THREE, payload: ticket })
-    }
+    const data: Array<ITicket> = []
+    filter.checkboxs.forEach((checkbox, idCheckbox) => {
+      if (checkbox) {
+        data.push(...ticket.data.filter((el) => el.segments[0].stops.length === idCheckbox - 1))
+      }
+    })
+    dispatch({ type: ETicketActionTypes.FILTER_DATA, payload: data })
     switch (true) {
       case tabs.cheaperTab.check: {
         dispatch({ type: ETicketActionTypes.SORT_TICKET_CHEAPER, payload: ticket })

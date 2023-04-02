@@ -50,11 +50,7 @@ export enum ETicketActionTypes {
   SKIP_ERROR = 'SKIP_ERROR',
   SORT_TICKET_CHEAPER = 'SORT_TICKET_CHEAPER',
   SORT_TICKET_FASTER = 'SORT_TICKET_FASTER',
-  FILTER_DATA_NULL = 'FILTER_DATA_NULL',
-  FILTER_DATA_ONE = 'FILTER_DATA_ONE',
-  FILTER_DATA_TWO = 'FILTER_DATA_TWO',
-  FILTER_DATA_THREE = 'FILTER_DATA_THREE',
-  CLEAR_FILTER_DATA = 'CLEAR_FILTER_DATA',
+  FILTER_DATA = 'FILTER_DATA',
 }
 
 interface IFetchSearchId {
@@ -96,28 +92,9 @@ interface ISortTicketFaster {
   payload: ITicketState
 }
 
-interface IFilterDataNull {
-  type: ETicketActionTypes.FILTER_DATA_NULL
-  payload: ITicketState
-}
-
-interface IFilterDataOne {
-  type: ETicketActionTypes.FILTER_DATA_ONE
-  payload: ITicketState
-}
-
-interface IFilterDataTwo {
-  type: ETicketActionTypes.FILTER_DATA_TWO
-  payload: ITicketState
-}
-
-interface IFilterDataThree {
-  type: ETicketActionTypes.FILTER_DATA_THREE
-  payload: ITicketState
-}
-
-interface IClearFilterData {
-  type: ETicketActionTypes.CLEAR_FILTER_DATA
+interface IFilterData {
+  type: ETicketActionTypes.FILTER_DATA
+  payload: Array<ITicket>
 }
 
 export type TTicketAction =
@@ -129,8 +106,4 @@ export type TTicketAction =
   | IFetchTicketEnd
   | ISortTicketCheaper
   | ISortTicketFaster
-  | IFilterDataNull
-  | IFilterDataOne
-  | IFilterDataTwo
-  | IFilterDataThree
-  | IClearFilterData
+  | IFilterData
